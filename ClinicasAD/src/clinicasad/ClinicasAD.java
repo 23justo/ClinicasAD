@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import usuarios.*;
 import usuarios.fabrica.*;
-
+import PacientesJpa.*;
 
 /**
  *
@@ -55,6 +55,7 @@ public class ClinicasAD {
        fabrica_usuarios.crearUsuario(secre2);
 
         
+
     }
     
 }

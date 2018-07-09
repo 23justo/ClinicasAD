@@ -5,6 +5,7 @@
     <class>usuarios.UsuarioEntidad</class>
     <class>usuarios.DoctorEntidad</class>
     <class>usuarios.SecretariaEntidad</class>
+    <class>PacientesJpa.PacienteObjeto</class>w
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dev_censo?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
