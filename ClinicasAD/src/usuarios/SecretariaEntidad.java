@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author Justo
  */
 @Entity
-public class UsuarioJPAController implements Serializable {
+public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,10 +41,10 @@ public class UsuarioJPAController implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsuarioJPAController)) {
+        if (!(object instanceof SecretariaEntidad)) {
             return false;
         }
-        UsuarioJPAController other = (UsuarioJPAController) object;
+        SecretariaEntidad other = (SecretariaEntidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -53,7 +53,7 @@ public class UsuarioJPAController implements Serializable {
 
     @Override
     public String toString() {
-        return "usuarios.UsuarioJPAController[ id=" + id + " ]";
+        return "usuarios.SecretariaEntidad[ id=" + id + " ]";
     }
     
 }
