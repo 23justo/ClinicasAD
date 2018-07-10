@@ -6,7 +6,7 @@
     <class>usuarios.DoctorEntidad</class>
     <class>usuarios.SecretariaEntidad</class>
     <class>PacientesJpa.PacienteObjeto</class>w
-    <properties>
+    <class>usuarios.permisos.PermisosEntidad</class><properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dev_censo?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

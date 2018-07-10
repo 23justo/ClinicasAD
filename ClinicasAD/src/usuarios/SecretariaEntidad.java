@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import usuarios.permisos.PermisosEntidad;
 
 /**
  *
@@ -22,6 +23,16 @@ public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public SecretariaEntidad(String nombres, String apellidos, String usuario, String password, String direccion, PermisosEntidad permisos) {
+        super(nombres, apellidos, usuario, password, direccion, permisos);
+    }
+
+    public SecretariaEntidad() {
+    }
+    
+    
+    
 
     public Long getId() {
         return id;
