@@ -11,9 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.eclipse.persistence.jpa.JpaHelper;
+import usuarios.permisos.*;
 
 /**
  *
@@ -31,7 +33,8 @@ public class UsuarioEntidad implements Serializable  {
     private String usuario;
     private String password;
     private String direccion;
-    
+    @OneToOne
+    private PermisosEntidad  permisos;
 
     public Long getId() {
         return id;
@@ -79,6 +82,26 @@ public class UsuarioEntidad implements Serializable  {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public PermisosEntidad getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(PermisosEntidad permisos) {
+        this.permisos = permisos;
+    }
+
+    public UsuarioEntidad( String nombres, String apellidos, String usuario, String password, String direccion, PermisosEntidad permisos) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.usuario = usuario;
+        this.password = password;
+        this.direccion = direccion;
+        this.permisos = permisos;
+    }
+
+    public UsuarioEntidad() {
     }
     
     

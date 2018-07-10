@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import usuarios.permisos.PermisosEntidad;
 
 /**
  *
@@ -31,6 +32,16 @@ public class DoctorEntidad extends UsuarioEntidad implements Serializable {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    public DoctorEntidad(String especialidad, String nombres, String apellidos, String usuario, String password, String direccion, PermisosEntidad permisos) {
+        super( nombres, apellidos, usuario, password, direccion, permisos);
+        this.especialidad = especialidad;
+    }
+
+    public DoctorEntidad() {
+    }
+
+    
     
     
 
