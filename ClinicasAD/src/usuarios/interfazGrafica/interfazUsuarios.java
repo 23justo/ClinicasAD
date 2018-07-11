@@ -24,12 +24,33 @@ import usuarios.permisos.PermisosEntidadJpaController;
  */
 public class interfazUsuarios extends javax.swing.JFrame {
     EntityManagerFactory  emf;
+    Object Usuario;
+    int vista_admin = 0;
     /**
      * Creates new form interfazUsuarios
      */
     public interfazUsuarios() {
         emf = Persistence.createEntityManagerFactory("ClinicasADPU");
         initComponents();
+    }
+    
+    
+    public interfazUsuarios(Object Usuario) {
+        initComponents();
+
+        this.vista_admin = 1;
+        this.Usuario = Usuario;
+        SecretariaEntidad Secretaria = (SecretariaEntidad)Usuario;
+        if(Secretaria.permisos.creacion_doctor==false){
+            creacionDoctor.setVisible(false);
+        }
+        if(Secretaria.permisos.creacion_secretaria==false){
+            crearSecretaria.setVisible(false);
+        }
+        if(Secretaria.permisos.edicion_secretaria==false || Secretaria.permisos.edicion_dcotor){
+            jButton1.setVisible(false);
+        }
+        emf = Persistence.createEntityManagerFactory("ClinicasADPU");
     }
 
     /**
@@ -791,32 +812,38 @@ public class interfazUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_usuario_tipoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switch(usuario_tipo.getText()){
-            case "DoctorEntidad":
-                DoctorEntidadJpaController doctor_jpa_controlador = new DoctorEntidadJpaController(emf);
-                DoctorEntidad doctor_editado = (DoctorEntidad) doctor_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
-                doctor_editado = doctor_editado.editar(usuario_especialidad.getText(), usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
-                {
-                    try {
-                        doctor_jpa_controlador.edit(doctor_editado);
-                    } catch (Exception ex) {
-                        Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println(vista_admin);
+        if(vista_admin==0){
+            switch(usuario_tipo.getText()){
+                case "DoctorEntidad":
+                    DoctorEntidadJpaController doctor_jpa_controlador = new DoctorEntidadJpaController(emf);
+                    DoctorEntidad doctor_editado = (DoctorEntidad) doctor_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
+                    doctor_editado = doctor_editado.editar(usuario_especialidad.getText(), usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
+                    {
+                        try {
+                            doctor_jpa_controlador.edit(doctor_editado);
+                        } catch (Exception ex) {
+                            Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
-            break;
-            case "SecretariaEntidad":
-                SecretariaEntidadJpaController secretaria_jpa_controlador = new SecretariaEntidadJpaController(emf);
-                SecretariaEntidad secretaria_editado = (SecretariaEntidad) secretaria_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
-                secretaria_editado = secretaria_editado.editar(usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
-                {
-                    try {
-                        secretaria_jpa_controlador.edit(secretaria_editado);
-                    } catch (Exception ex) {
-                        Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                break;
+                case "SecretariaEntidad":
+                    SecretariaEntidadJpaController secretaria_jpa_controlador = new SecretariaEntidadJpaController(emf);
+                    SecretariaEntidad secretaria_editado = (SecretariaEntidad) secretaria_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
+                    secretaria_editado = secretaria_editado.editar(usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
+                    {
+                        try {
+                            secretaria_jpa_controlador.edit(secretaria_editado);
+                        } catch (Exception ex) {
+                            Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
 
-            break;
+                break;
+            }
+        }
+        else{
+            jButton1.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
