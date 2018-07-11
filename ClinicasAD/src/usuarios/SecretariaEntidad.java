@@ -30,6 +30,10 @@ public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
 
     public SecretariaEntidad() {
     }
+
+    public SecretariaEntidad(String text, String text0, String text1, String text2, String text3, String text4, PermisosEntidad permiso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
