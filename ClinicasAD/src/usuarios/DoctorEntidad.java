@@ -41,7 +41,15 @@ public class DoctorEntidad extends UsuarioEntidad implements Serializable {
     public DoctorEntidad() {
     }
 
-    
+    public DoctorEntidad editar(String especialidad, String nombres, String apellidos, String usuario, String password, String direccion){
+        this.especialidad = especialidad;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.usuario = usuario;
+        this.password = password;
+        this.direccion = direccion;
+        return this;
+    }
     
     
 

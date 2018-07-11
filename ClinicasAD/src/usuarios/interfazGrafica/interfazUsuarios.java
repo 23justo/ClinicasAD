@@ -5,6 +5,8 @@
  */
 package usuarios.interfazGrafica;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import usuarios.DoctorEntidad;
@@ -50,7 +52,7 @@ public class interfazUsuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         usuario_apellidos = new javax.swing.JTextField();
-        usuario_nombre = new javax.swing.JTextField();
+        usuario_nombres = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         usuario_direccion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -62,6 +64,8 @@ public class interfazUsuarios extends javax.swing.JFrame {
         usuario_password = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         usuario_tipo = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        usuario_especialidad = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         secre_permiso8 = new javax.swing.JCheckBox();
         crearSecretaria = new javax.swing.JButton();
@@ -146,8 +150,11 @@ public class interfazUsuarios extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${password}"));
         columnBinding.setColumnName("Password");
         columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${especialidad}"));
+        columnBinding.setColumnName("Especialidad");
+        columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dtype}"));
-        columnBinding.setColumnName("Tipo");
+        columnBinding.setColumnName("Dtype");
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
@@ -160,7 +167,7 @@ public class interfazUsuarios extends javax.swing.JFrame {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.apellidos}"), usuario_apellidos, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nombres}"), usuario_nombre, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nombres}"), usuario_nombres, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         jLabel3.setText("Direccion");
@@ -201,6 +208,11 @@ public class interfazUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel39.setText("Especialidad");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.especialidad}"), usuario_especialidad, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -210,35 +222,32 @@ public class interfazUsuarios extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel39))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usuario_apellidos)
+                                .addComponent(usuario_nombres)
+                                .addComponent(usuario_id, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(usuario_apellidos)
-                                    .addComponent(usuario_nombre)
-                                    .addComponent(usuario_id, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel30))
-                                .addGap(14, 14, 14)
+                                .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(usuario_usuario)
                                     .addComponent(usuario_password)
-                                    .addComponent(usuario_tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                                .addGap(6, 6, 6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(usuario_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(usuario_tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                    .addComponent(usuario_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                    .addComponent(usuario_especialidad)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -260,27 +269,34 @@ public class interfazUsuarios extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(usuario_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usuario_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(usuario_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(usuario_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(usuario_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(usuario_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel30)
-                            .addComponent(usuario_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                            .addComponent(usuario_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel39))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(usuario_especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
                         .addComponent(jButton1)))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listado", jPanel1);
@@ -779,11 +795,28 @@ public class interfazUsuarios extends javax.swing.JFrame {
             case "DoctorEntidad":
                 DoctorEntidadJpaController doctor_jpa_controlador = new DoctorEntidadJpaController(emf);
                 DoctorEntidad doctor_editado = (DoctorEntidad) doctor_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
+                doctor_editado = doctor_editado.editar(usuario_especialidad.getText(), usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
+                {
+                    try {
+                        doctor_jpa_controlador.edit(doctor_editado);
+                    } catch (Exception ex) {
+                        Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             break;
             case "SecretariaEntidad":
                 SecretariaEntidadJpaController secretaria_jpa_controlador = new SecretariaEntidadJpaController(emf);
                 SecretariaEntidad secretaria_editado = (SecretariaEntidad) secretaria_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
-                break;
+                secretaria_editado = secretaria_editado.editar(usuario_nombres.getText(), usuario_apellidos.getText(), usuario_usuario.getText(), usuario_password.getText(), usuario_direccion.getText());
+                {
+                    try {
+                        secretaria_jpa_controlador.edit(secretaria_editado);
+                    } catch (Exception ex) {
+                        Logger.getLogger(interfazUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            break;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -873,6 +906,7 @@ public class interfazUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -900,8 +934,9 @@ public class interfazUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField secre_usuario;
     private javax.swing.JTextField usuario_apellidos;
     private javax.swing.JTextField usuario_direccion;
+    private javax.swing.JTextField usuario_especialidad;
     private javax.swing.JTextField usuario_id;
-    private javax.swing.JTextField usuario_nombre;
+    private javax.swing.JTextField usuario_nombres;
     private javax.swing.JTextField usuario_password;
     private javax.swing.JTextField usuario_tipo;
     private javax.swing.JTextField usuario_usuario;
