@@ -17,10 +17,10 @@ import javax.persistence.Persistence;
  *
  * @author Justo
  */
-public class FabricaCitas {
-    public void crearUsuario(Object cita_especifico){
+public class FabricaCitas implements FabricaCitasInterfaz{
+    public void crearCita(Object cita_especifico){
         EntityManagerFactory  emf = Persistence.createEntityManagerFactory("ClinicasADPU");
-        if(cita_especifico.getClass().getName()=="citass.CitaClinicaEntidad"){
+        if(cita_especifico.getClass().getName()=="citas.CitaClinicaEntidad"){
             CitaClinicaEntidadJpaController cita_jpa_controlador = new CitaClinicaEntidadJpaController(emf);
             cita_jpa_controlador.create((CitaClinicaEntidad) cita_especifico);
         }

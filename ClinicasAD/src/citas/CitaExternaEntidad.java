@@ -27,6 +27,14 @@ public class CitaExternaEntidad extends CitaEntidad implements Serializable {
         return id;
     }
 
+    public CitaExternaEntidad() {
+    }
+
+    public CitaExternaEntidad(String direccion) {
+        this.direccion = direccion;
+    }
+
+    
     public void setId(Long id) {
         this.id = id;
     }
