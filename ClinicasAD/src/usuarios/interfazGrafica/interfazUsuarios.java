@@ -13,6 +13,7 @@ import usuarios.DoctorEntidad;
 import usuarios.DoctorEntidadJpaController;
 import usuarios.SecretariaEntidad;
 import usuarios.SecretariaEntidadJpaController;
+import usuarios.UsuarioEntidad;
 import usuarios.fabrica.FabricaUsuarios;
 import usuarios.fabrica.UsuariosFabricaInterfaz;
 import usuarios.permisos.PermisosEntidad;
@@ -40,14 +41,14 @@ public class interfazUsuarios extends javax.swing.JFrame {
 
         this.vista_admin = 1;
         this.Usuario = Usuario;
-        SecretariaEntidad Secretaria = (SecretariaEntidad)Usuario;
-        if(Secretaria.permisos.creacion_doctor==false){
+        UsuarioEntidad usuario = (UsuarioEntidad)Usuario;
+        if(usuario.permisos.creacion_doctor==false){
             creacionDoctor.setVisible(false);
         }
-        if(Secretaria.permisos.creacion_secretaria==false){
+        if(usuario.permisos.creacion_secretaria==false){
             crearSecretaria.setVisible(false);
         }
-        if(Secretaria.permisos.edicion_secretaria==false || Secretaria.permisos.edicion_dcotor){
+        if(usuario.permisos.edicion_secretaria==false || usuario.permisos.edicion_dcotor){
             jButton1.setVisible(false);
         }
         emf = Persistence.createEntityManagerFactory("ClinicasADPU");

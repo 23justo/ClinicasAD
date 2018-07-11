@@ -18,7 +18,7 @@ import usuarios.interfazGrafica.interfazUsuarios;
 public class menuAdmin extends javax.swing.JFrame {
 
       EntityManagerFactory emf = Persistence.createEntityManagerFactory("ClinicasADPU");
-      SecretariaEntidadJpaController secretaria_jpa_controlador = new SecretariaEntidadJpaController(emf);
+      UsuarioEntidadJpaController usuario_jpa_controlador = new UsuarioEntidadJpaController(emf);
     /**
      * Creates new form menuAdmin
      */
@@ -227,8 +227,8 @@ public class menuAdmin extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
        
-        SecretariaEntidad secretaria = (SecretariaEntidad) secretaria_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
-        interfazUsuarios usuarios = new interfazUsuarios(secretaria);
+        UsuarioEntidad usuario = usuario_jpa_controlador.findUsuarioEntidad(Long.parseLong(usuario_id.getText()));
+        interfazUsuarios usuarios = new interfazUsuarios(usuario);
         usuarios.setVisible(true);
         
     }//GEN-LAST:event_jButton4ActionPerformed
