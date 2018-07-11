@@ -3,41 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package usuarios;
+package citas;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import usuarios.permisos.PermisosEntidad;
 
 /**
  *
  * @author Justo
  */
 @Entity
-public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
+public class CitaExternaEntidad extends CitaEntidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public SecretariaEntidad(String nombres, String apellidos, String usuario, String password, String direccion, PermisosEntidad permisos) {
-        super(nombres, apellidos, usuario, password, direccion, permisos);
-    }
-
-    public SecretariaEntidad() {
-    }
-
-    public SecretariaEntidad(String text, String text0, String text1, String text2, String text3, String text4, PermisosEntidad permiso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-
+    public String direccion;
     public Long getId() {
         return id;
     }
@@ -56,10 +41,10 @@ public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SecretariaEntidad)) {
+        if (!(object instanceof CitaExternaEntidad)) {
             return false;
         }
-        SecretariaEntidad other = (SecretariaEntidad) object;
+        CitaExternaEntidad other = (CitaExternaEntidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -68,7 +53,7 @@ public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
 
     @Override
     public String toString() {
-        return "usuarios.SecretariaEntidad[ id=" + id + " ]";
+        return "citas.CitaExternaEntidad[ id=" + id + " ]";
     }
     
 }
