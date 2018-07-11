@@ -28,13 +28,13 @@ public class UsuarioEntidad implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nombres;
-    private String apellidos;
-    private String usuario;
-    private String password;
-    private String direccion;
+    public String nombres;
+    public String apellidos;
+    public String usuario;
+    public String password;
+    public String direccion;
     @OneToOne
-    private PermisosEntidad  permisos;
+    public PermisosEntidad  permisos;
 
     public Long getId() {
         return id;
@@ -104,9 +104,6 @@ public class UsuarioEntidad implements Serializable  {
     public UsuarioEntidad() {
     }
     
-    
-
-
     @Override
     public int hashCode() {
         int hash = 0;

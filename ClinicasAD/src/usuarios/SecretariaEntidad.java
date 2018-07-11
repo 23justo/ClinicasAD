@@ -35,7 +35,14 @@ public class SecretariaEntidad extends UsuarioEntidad implements Serializable  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    public SecretariaEntidad editar(String nombres, String apellidos, String usuario, String password, String direccion){
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.usuario = usuario;
+        this.password = password;
+        this.direccion = direccion;
+        return this;
+    }
     
 
     public Long getId() {
