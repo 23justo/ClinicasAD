@@ -42,8 +42,22 @@ public class CitaEntidad implements Serializable {
     public String razon; 
     public String receta;
     public float precio;
-   
 
+    public CitaEntidad(DoctorEntidad doctor, SecretariaEntidad secretaria, PacienteObjeto paciente, Timestamp fecha, String razon, String receta, float precio) {
+        this.doctor = doctor;
+        this.secretaria = secretaria;
+        this.paciente = paciente;
+        this.fecha = fecha;
+        this.razon = razon;
+        this.receta = receta;
+        this.precio = precio;
+    }
+
+    public CitaEntidad() {
+    }
+   
+    
+    
     public Long getId() {
         return id;
     }

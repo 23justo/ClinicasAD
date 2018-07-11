@@ -5,19 +5,32 @@
  */
 package InterfazCita;
 
+import citas.CitaClinicaEntidad;
+import citas.CitaEntidad;
+import citas.CitaExternaEntidad;
+import citasFabrica.FabricaCitas;
+import citasFabrica.FabricaCitasInterfaz;
 import java.awt.Panel;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JPanel;
+import usuarios.DoctorEntidad;
+import usuarios.fabrica.FabricaUsuarios;
+import usuarios.fabrica.UsuariosFabricaInterfaz;
+import usuarios.permisos.PermisosEntidadJpaController;
 
 /**
  *
  * @author Mr josh
  */
 public class InterfazPrincipalcitas extends javax.swing.JFrame {
+    EntityManagerFactory  emf;
 
     /**
      * Creates new form InterfazPrincipalcitas
      */
     public InterfazPrincipalcitas() {
+        emf = Persistence.createEntityManagerFactory("ClinicasADPU");
         initComponents();
     }
 
@@ -29,7 +42,11 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        ClinicasADPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("ClinicasADPU").createEntityManager();
+        citaentidadQuery = java.beans.Beans.isDesignTime() ? null : ClinicasADPUEntityManager.createQuery("SELECT c FROM Citaentidad c");
+        citaentidadList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : citaentidadQuery.getResultList();
         panelCreacionCitaProgramada = new javax.swing.JTabbedPane();
         PanelPrincipal = new javax.swing.JPanel();
         botoncrearcitaprogramada = new javax.swing.JButton();
@@ -51,6 +68,7 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         campo_cita_externa_doctor = new javax.swing.JTextField();
         campo_cita_externa_fecha = new javax.swing.JTextField();
         campo_cita_externa_motivo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -64,6 +82,7 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         campo_cita_programada_doctor = new javax.swing.JTextField();
         campo_cita_programada_fecha = new javax.swing.JTextField();
         campo_cita_programada_motivo = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,17 +103,37 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         jLabel1.setText("Creacion de cita: click encima para crear el tipo de cita");
         PanelPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, citaentidadList, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${fecha}"));
+        columnBinding.setColumnName("Fecha");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${secretariaId}"));
+        columnBinding.setColumnName("Secretaria Id");
+        columnBinding.setColumnClass(java.math.BigInteger.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pacienteId}"));
+        columnBinding.setColumnName("Paciente Id");
+        columnBinding.setColumnClass(java.math.BigInteger.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${doctorId}"));
+        columnBinding.setColumnName("Doctor Id");
+        columnBinding.setColumnClass(java.math.BigInteger.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${receta}"));
+        columnBinding.setColumnName("Receta");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${razon}"));
+        columnBinding.setColumnName("Razon");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${precio}"));
+        columnBinding.setColumnName("Precio");
+        columnBinding.setColumnClass(Float.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dtype}"));
+        columnBinding.setColumnName("Dtype");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${direccion}"));
+        columnBinding.setColumnName("Direccion");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+
         jScrollPane1.setViewportView(jTable1);
 
         PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 550, 190));
@@ -130,6 +169,14 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         panelCreacionCitaExterna.add(campo_cita_externa_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 220, 30));
         panelCreacionCitaExterna.add(campo_cita_externa_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 220, 30));
 
+        jButton1.setText("Crear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panelCreacionCitaExterna.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
+
         panelCreacionCitaProgramada.addTab("Creacion Cita externa", panelCreacionCitaExterna);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,9 +205,19 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         jPanel2.add(campo_cita_programada_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 220, 30));
         jPanel2.add(campo_cita_programada_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 220, 30));
 
+        jButton2.setText("Crear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
+
         panelCreacionCitaProgramada.addTab("Creacion Cita programada", jPanel2);
 
-        getContentPane().add(panelCreacionCitaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 390));
+        getContentPane().add(panelCreacionCitaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 440));
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,6 +226,20 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.panelCreacionCitaExterna.setVisible(true);
     }//GEN-LAST:event_botoncrearcitaprogramadaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CitaClinicaEntidad cita_nuevo = new CitaClinicaEntidad();
+        FabricaCitasInterfaz fabrica_usuarios = new FabricaCitas();
+        fabrica_usuarios.crearCita(cita_nuevo);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CitaExternaEntidad cita_nuevo = new CitaExternaEntidad();
+        FabricaCitasInterfaz fabrica_usuarios = new FabricaCitas();
+        fabrica_usuarios.crearCita(cita_nuevo);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +277,7 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager ClinicasADPUEntityManager;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton botoncrearcitaexterna;
     private javax.swing.JButton botoncrearcitaprogramada;
@@ -221,6 +293,10 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
     private javax.swing.JTextField campo_cita_programada_motivo;
     private javax.swing.JTextField campo_cita_programada_observacion;
     private javax.swing.JTextField campo_cita_programada_paciente;
+    private java.util.List<InterfazCita.Citaentidad> citaentidadList;
+    private javax.persistence.Query citaentidadQuery;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -240,5 +316,6 @@ public class InterfazPrincipalcitas extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelCreacionCitaExterna;
     private javax.swing.JTabbedPane panelCreacionCitaProgramada;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

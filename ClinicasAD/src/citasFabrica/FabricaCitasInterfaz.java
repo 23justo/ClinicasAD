@@ -10,5 +10,5 @@ package citasFabrica;
  * @author Justo
  */
 public interface FabricaCitasInterfaz {
-    
+    public void crearCita(Object cita_especifico);
 }

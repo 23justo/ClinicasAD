@@ -6,7 +6,13 @@
     <class>usuarios.DoctorEntidad</class>
     <class>usuarios.SecretariaEntidad</class>
     <class>PacientesJpa.PacienteObjeto</class>
-    <class>usuarios.permisos.PermisosEntidad</class><class>usuarios.interfazGrafica.Usuarioentidad</class><class>citas.CitaEntidad</class><class>citas.CitaClinicaEntidad</class><class>citas.CitaExternaEntidad</class><properties>
+    <class>usuarios.permisos.PermisosEntidad</class>
+    <class>usuarios.interfazGrafica.Usuarioentidad</class>
+    <class>citas.CitaEntidad</class>
+    <class>citas.CitaClinicaEntidad</class>
+    <class>citas.CitaExternaEntidad</class>
+    <class>InterfazCita.Citaentidad</class>
+    <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dev_censo?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

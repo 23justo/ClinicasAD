@@ -5,11 +5,15 @@
  */
 package citas;
 
+import PacientesJpa.PacienteObjeto;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import usuarios.DoctorEntidad;
+import usuarios.SecretariaEntidad;
 
 /**
  *
@@ -22,6 +26,15 @@ public class CitaClinicaEntidad extends CitaEntidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public CitaClinicaEntidad(DoctorEntidad doctor, SecretariaEntidad secretaria, PacienteObjeto paciente, Timestamp fecha, String razon, String receta, float precio) {
+        super(doctor, secretaria, paciente, fecha, razon, receta, precio);
+    }
+
+    public CitaClinicaEntidad() {
+    }
+    
+ 
 
     public Long getId() {
         return id;
